@@ -1,0 +1,1 @@
+cmd_/home/vineet/Downloads/Q2_Lab2/2017csb1095_Q2.ko := ld -r -m elf_x86_64 -z max-page-size=0x200000 -T ./scripts/module-common.lds --build-id  -o /home/vineet/Downloads/Q2_Lab2/2017csb1095_Q2.ko /home/vineet/Downloads/Q2_Lab2/2017csb1095_Q2.o /home/vineet/Downloads/Q2_Lab2/2017csb1095_Q2.mod.o ;  true
