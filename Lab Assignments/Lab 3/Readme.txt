@@ -18,6 +18,15 @@ Command :
 
 Question 3 :
 
+The parent process waits until the child process is complete to run the 
+algorithm successfully.
+1. gcc -o Q3 Q3.c
+2. ./Q3 "Your Number" ex. : ./Q3 35
 
+Question 4 :
+
+Shared Memory block is printed
+1. gcc -o Q4 Q4.c -lrt
+2. ./Q4 "Your Number" ex. : ./Q4 35
 
 

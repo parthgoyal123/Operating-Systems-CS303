@@ -7,8 +7,10 @@
 
 #include  <stdio.h>
 #include  <sys/types.h>
+#include <unistd.h>
+#include <sys/wait.h>
 
-#define   MAX_COUNT 1000
+#define   MAX_COUNT 100
 
 int main( )
 {
@@ -30,9 +32,9 @@ int main( )
          printf("parent pid = %d\n", getpid());
          int j;
 
-	for (j = 1; j <= MAX_COUNT; j++)
-	  printf("This line is from parent, value = %d\n", j);
-	  printf("*** Parent is done ***\n");
+        for (j = 1; j <= MAX_COUNT; j++)
+          printf("This line is from parent, value = %d\n", j);
+          printf("*** Parent is done ***\n");
 	    } 
      return 0;     
 }

@@ -15,7 +15,8 @@ int main ( )
 
 /* get and print my pid and my parent's pid */
 
-   my_pid = getpid();    parent_pid = getppid();
+   my_pid = getpid();    
+   parent_pid = getppid();
    printf("\nParent: my pid is %d\n\n", my_pid);
    printf("Parent: my parent's pid is %d\n\n", parent_pid);
 

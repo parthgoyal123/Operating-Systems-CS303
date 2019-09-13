@@ -16,7 +16,7 @@ pid_t  pid;
 	else if (pid == 0){ 
           printf("I am the child process with ID of %d\n", getpid());
 	  printf("My parent process has an ID of %d\n", getppid()); 
-	  execlp("/bin/ls", "ls", NULL);
+	//   execlp("/bin/ls", "ls", NULL);
 	}
 	else {
 	  	wait ();

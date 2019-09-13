@@ -1,5 +1,9 @@
-#include  <stdio.h>
-#include  <sys/types.h>
+
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
 
 int main( ) 
 {     
@@ -17,7 +21,7 @@ int main( )
     printf("CHILD n: %d\n", n);
   }
   else if(pid > 0){//parent
-    wait();
+    wait(NULL);
     n += 10;
     printf("PARENT n: %d\n", n);
   }
