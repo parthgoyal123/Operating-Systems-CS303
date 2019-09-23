@@ -22,3 +22,7 @@ read end of the pipe1. Now Reverse the string read from pipe1 and write to pipe2
 After the child process completes its execution, read from pipe2, that child process wrote.
 
 COMMAND --> gcc -o Unix_2_pipes Q2.c && ./Unix_2_pipes
+
+*Question 3*
+
+Command --> gcc -o Q3 Q3.c && ./Q3

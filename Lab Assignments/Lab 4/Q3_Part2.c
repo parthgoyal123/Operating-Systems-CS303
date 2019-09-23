@@ -26,7 +26,8 @@ int main() {
     int j = 0;
 
     // store the commands in history
-    char **history[10];
+    char *history[10];
+    for(j = 0; j<10; j++) history[j] = (char*) malloc(sizeof(char)*MAX_LINE);
 
     int index = 0;
     int count_commands = 0;
@@ -54,7 +55,97 @@ int main() {
         // no valid input
         if(strlen(input) == 0) continue;
 
-        printf("%s\n", input);
+        // here we are sure to have an input (cannot say if valid or invalid)
+
+        // check if the command is history
+        if(strcmp(input, "history") == 0) {
+
+            // if this is the first command
+            if(count_commands == 0) {
+                printf("No History of commands!\n");
+            }
+
+            else {
+                // print all the commands in the history
+                int k = 0;
+                int maxx_index = min(10, count_commands) - 1;
+                for(k = maxx_index; k>=0; k--) {
+                    printf("Recent Index = %d\tCommand = %s\n", maxx_index-k+1, history[maxx_index-k]);
+                }
+            }
+            continue;
+        }
+
+        // check if we need to execute the previous command
+        else if (strcmp(input, "!!") == 0) {
+
+            // if this is the first command
+            if(count_commands == 0) {
+                printf("No commands in history!\n");
+                continue;
+            }
+
+            // get previous command
+            else {
+                strcpy(input, history[0]);
+            }
+        }
+
+        // check for commands like "!3"
+        else if (input[0] == '!') {
+            // if this is the first command
+            if(count_commands == 0) {
+                printf("No commands in history!\n");
+                continue;
+            }
+
+            else {
+                int number = 0;
+                int k = 1;
+                int len = strlen(input);
+
+                while(k < len) {
+                    number = 10*number + (int)(input[k] - '0');
+                    k++;
+                }
+
+                // check if we have 'number' many previous commands
+                if(number > 10 || number > count_commands) {
+                    printf("No such command in history!\n");
+                    continue;
+                }
+
+                // if input is valid
+                else {
+                    strcpy(input, history[number-1]);
+                }
+            }
+        }
+
+        /* --- insert command in history -- */
+
+        // if it is the first command
+        if(count_commands == 0) {
+            strcpy(history[0], input);
+            // history[0] = input;
+            count_commands++;
+            printf("Command Written in History = %s\n", history[0]);
+        }
+
+        // if not the first command
+        else if (count_commands > 0) {
+            // move previous commands to new positions
+
+            int k = 0;
+            for(k = min(9, count_commands); k>0; k--) {
+                strcpy(history[k], history[k-1]);
+            }
+
+            strcpy(history[0], input);
+            // history[0] = input;
+            printf("Command Written in History = %s\n", history[0]);
+            count_commands++;
+        }
 
         /* Break the input into tokens using strtok */
         int i = 0;
@@ -89,39 +180,24 @@ int main() {
         // make a child process
         pid_t pid = fork();
 
-        /* store in history and make it most recent */
-
-        // insert in history if first command
-        if(count_commands == 0) {
-            history[0] = args;
-            count_commands++;
-        }
-
-
-        // if not the first command, shift every command to new next position
-        else if(count_commands > 0) {
-            int k = 0;
-            for(k = min(9, count_commands); k>0; k--) {
-                history[k] = history[k-1];
-            }
-
-            history[0] = args;
-            count_commands++;
-        }
-
         /* Child process */
         if(pid == 0) {
-            execvp(args[0], args);
+            int exec = execvp(args[0], args);
+
+            // exit the child process if invalid command
+            if(exec == -1) {
+                printf("Not a valid Command!\n");
+                exit(0);
+            }
         }
 
         /* Parent Process */
         else {
             if(!run_concurrent) {
                 while(wait(NULL) != pid);
-            } else {
-                args[i-1] = "&";
-                args[i] = NULL;
             }
+
+            run_concurrent = 0;
         }
     }
-}        
+}
