@@ -83,13 +83,13 @@ int main() {
         int i = 0;
         for(i = 0; read_msg[i] != '\0'; i++) {
 
-            // if lower case, convert to lower
-            if(read_msg[i] >= 65 && read_msg[i] <= 90) {
+            // if upper case, convert to lower
+            if(read_msg[i] >= 'A' && read_msg[i] <= 'Z') {
                 read_msg[i] = read_msg[i] + 32;
             }
 
             // is smaller case alphabet, convert to upper
-            else if (read_msg[i] >= 97 && read_msg[i] <= 122) {
+            else if (read_msg[i] >= 'a' && read_msg[i] <= 'z') {
                 read_msg[i] = read_msg[i] - 32;
             }
         }

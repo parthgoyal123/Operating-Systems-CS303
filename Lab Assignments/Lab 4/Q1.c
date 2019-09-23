@@ -48,7 +48,7 @@ int main( )
 
 		/* read from the pipe */
 		read(fd[READ_END], read_msg, BUFFER_SIZE);
-		printf("child read: %s\n",read_msg);
+		printf("Child read: %s\n",read_msg);
 
 		/* close the read end of the pipe */
 		close(fd[READ_END]);
