@@ -92,7 +92,7 @@ int main() {
         }
 
         // check for commands like "!3"
-        else if (input[0] == '!') {
+        else if (input[0] == '!' && input[1] != '!') {
             // if this is the first command
             if(count_commands == 0) {
                 printf("No commands in history!\n");
@@ -120,6 +120,11 @@ int main() {
                     strcpy(input, history[number-1]);
                 }
             }
+        }
+
+        else if (input[0] == '!' && input[1] == '!' && (strcmp(input, "!!") != 0)) {
+            printf("Invalid Command!\n");
+            continue;
         }
 
         /* --- insert command in history -- */

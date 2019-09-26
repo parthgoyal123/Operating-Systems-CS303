@@ -1,6 +1,6 @@
 /* ----------- LAB4 Operating Systems CS303 ------------*/
-					Submitted by : Parth Goyal
-							(2017csb1095)
+								Submitted by : Parth Goyal
+											(2017csb1095)
 
 *Question 1*
 
@@ -26,3 +26,15 @@ COMMAND --> gcc -o Unix_2_pipes Q2.c && ./Unix_2_pipes
 *Question 3*
 
 Command --> gcc -o Q3 Q3.c && ./Q3
+
+Assumptions/Clarifications:
+
+1. !3 denotes 3rd most recent and not 3rd least recent.
+
+2. !! commands that translates to some other command is added in history.
+
+3. !! & does not work concurrently.
+
+4. All commands whether valid or invalid are added to history table.
+
+5. !! or !3 does not add up in the history if there are no previous commands.

@@ -92,7 +92,7 @@ int main() {
         }
 
         // check for commands like "!3"
-        else if (input[0] == '!') {
+        else if (input[0] == '!' && input[1] != '!') {
             // if this is the first command
             if(count_commands == 0) {
                 printf("No commands in history!\n");
@@ -122,6 +122,11 @@ int main() {
             }
         }
 
+        else if (input[0] == '!' && input[1] == '!' && (strcmp(input, "!!") != 0)) {
+            printf("Invalid Command!\n");
+            continue;
+        }
+
         /* --- insert command in history -- */
 
         // if it is the first command
@@ -146,6 +151,7 @@ int main() {
             printf("Command Written in History = %s\n", history[0]);
             count_commands++;
         }
+
 
         /* Break the input into tokens using strtok */
         int i = 0;
