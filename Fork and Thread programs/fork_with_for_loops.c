@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-#define   MAX_COUNT 1000
+#define   MAX_COUNT 100
 
 int main( )
 {
@@ -23,6 +23,7 @@ int main( )
        }         
 	  
      else{
+       wait(NULL);
          printf("parent pid = %d\n", getpid());
          int j;
 

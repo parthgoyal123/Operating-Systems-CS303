@@ -1,5 +1,5 @@
 # include <sys/types.h>
-//# include <sys/wait.h>
+# include <sys/wait.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -8,6 +8,10 @@ int main ()
 {
 
   pid_t pid, pid1, pid2;
+
+  execlp("/bin/ls", "ls", NULL);
+
+  printf("---------");
 
 pid = fork();
 
@@ -20,7 +24,7 @@ else if (pid == 0)
 {
 
  pid1 = getpid();
- printf("child pid = %d", pid1);
+ printf("---child pid = %d---", pid1);
  execlp("/bin/ls", "ls", NULL);
 
  exit(0);
@@ -28,7 +32,7 @@ else if (pid == 0)
 
 else 
 {
-  wait();
+  wait(NULL);
   pid2 = getpid();
   printf("parent pid = %d", pid2);
   printf("Child Complete");

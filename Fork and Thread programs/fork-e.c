@@ -7,7 +7,7 @@ int i, pid;
 
 for(i = 0; i < 3; i++){
 pid = fork();
-printf("%d\n", pid);
+printf("%d\n", getpid());
 }
 
 //printf("Process with pid = %d finishes now\n", getpid());

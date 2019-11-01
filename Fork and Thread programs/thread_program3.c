@@ -29,8 +29,8 @@ int main(int argc, char *argv[ ]) {
  
 	/* create threads */
 	for (i = 0; i < NUM_THREADS; ++i) {
-	thr_data[i].id = i;
 
+		thr_data[i].id = i;
 		if ((rc = pthread_create(&thr[i], NULL, thr_func, &thr_data[i]))) {
 			fprintf(stderr, "error: pthread_create, rc: %d\n", rc);
 			return EXIT_FAILURE;
